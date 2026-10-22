@@ -395,3 +395,5 @@ main > section[id]:not(#site-footer):not(#contact){min-height:0!important;height
 @media(min-width:1024px){.hero-nova h1{max-width:none!important;white-space:nowrap}.hero-nova h1 br{display:none}.hero-nova h1 .text-muted{margin-left:.3em}}
 /* hero: wider than the page column */
 @media(min-width:1024px){.hero-nova{width:calc(100vw / .85 - 144px)!important;max-width:none!important;margin-left:calc(50% - (100vw / .85 - 144px) / 2)!important}}
+/* hero art: fill the full hero width (drop the 2:1 cap) */
+@media(min-width:1024px){.hero-nova .row-start-2{justify-content:stretch!important}.hero-nova .row-start-2>div{width:100%!important;aspect-ratio:auto!important;height:100%!important}}
