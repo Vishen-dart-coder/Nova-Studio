@@ -389,3 +389,19 @@ document.body.appendChild(s)}catch(e){}})();
     var s = document.createElement('script'); s.defer = true; s.src = '/_vercel/insights/script.js'; document.head.appendChild(s);
   } catch (e) {}
 })();
+
+/* Lenis smooth scroll */
+(function(){
+  if(typeof Lenis==='undefined'||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))return;
+  var lenis=new Lenis({lerp:.1,smoothWheel:true,anchors:false});
+  window.__lenis=lenis;
+  function raf(t){lenis.raf(t);requestAnimationFrame(raf)}
+  requestAnimationFrame(raf);
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href^="#"]');
+    if(!a)return;var id=a.getAttribute('href');if(id.length<2)return;
+    var el=document.querySelector(id);if(!el)return;
+    e.preventDefault();lenis.scrollTo(el,{offset:0,duration:1.2});
+    try{history.pushState(null,'',id)}catch(_){}
+  });
+})();

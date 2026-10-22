@@ -323,8 +323,8 @@ main > section[id]:not(#contact):not(#site-footer){padding-top:clamp(72px,9svh,1
 
 /* desktop: each section is exactly one screen, snapping one after another */
 @media(min-width:1024px) and (min-height:640px){
-html{scroll-snap-type:y mandatory;scroll-padding-top:0}
-main > section[id]:not(#site-footer),main > section.hero-nova,.ft{scroll-snap-align:start;scroll-snap-stop:always}
+html{scroll-padding-top:0}
+
 main > section[id]:not(#contact):not(#site-footer){height:calc(100svh / .85);min-height:0;overflow-y:clip;padding-top:clamp(64px,8svh,90px)!important;padding-bottom:clamp(16px,3svh,36px)!important;gap:clamp(12px,2.4svh,28px)!important}
 .svc-row{padding-top:clamp(8px,1.5svh,20px)!important;padding-bottom:clamp(8px,1.5svh,20px)!important}
 .svc-row *{line-height:1.2}
@@ -397,3 +397,6 @@ main > section[id]:not(#site-footer):not(#contact){min-height:0!important;height
 @media(min-width:1024px){.hero-nova{width:calc(100vw / .85 - 144px)!important;max-width:none!important;margin-left:calc(50% - (100vw / .85 - 144px) / 2)!important}}
 /* hero art: fill the full hero width (drop the 2:1 cap) */
 @media(min-width:1024px){.hero-nova .row-start-2{justify-content:stretch!important}.hero-nova .row-start-2>div{width:100%!important;aspect-ratio:auto!important;height:100%!important}}
+
+/* Lenis */
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}
