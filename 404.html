@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Page not found — Nøva</title>
+<script>(function(){try{var m=localStorage.getItem("nova-mode");if(m!=="dark"&&m!=="light"){m=(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light"}document.documentElement.setAttribute("data-mode",m)}catch(e){document.documentElement.setAttribute("data-mode","light")}})()</script>
+<style>
+:root{--bg:#fafaf8;--fg:#111;--mut:#6b6b68;--art:#111;--line:rgba(0,0,0,.14)}
+:root[data-mode=dark]{--bg:#0f0f0f;--fg:#f2f2f0;--mut:#9a9a96;--art:#f2f2f0;--line:rgba(255,255,255,.16)}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg)}
+body{min-height:100svh;display:flex;flex-direction:column;font-family:"Geist","Geist Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;padding-inline:max(20px,env(safe-area-inset-left,0px)) max(20px,env(safe-area-inset-right,0px))}
+header{display:flex;justify-content:space-between;align-items:center;padding-block:max(20px,env(safe-area-inset-top,0px)) 0;max-width:1280px;width:100%;margin:0 auto}
+.logo{font-size:26px;letter-spacing:-.02em;color:var(--fg);text-decoration:none;font-weight:300}
+.mono{font-family:ui-monospace,"Geist Mono","SF Mono",Menlo,Consolas,monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+main{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:clamp(20px,4svh,40px);max-width:1280px;width:100%;margin:0 auto;padding-block:24px}
+#art{margin:0;color:var(--art);font-family:ui-monospace,"Geist Mono","SF Mono",Menlo,Consolas,monospace;line-height:1;white-space:pre;user-select:none;-webkit-user-select:none;letter-spacing:0;font-size:10px;max-width:100%;overflow:hidden;text-align:center}
+.copy{text-align:center;max-width:46ch}
+h1{font-weight:400;font-size:clamp(26px,3.4vw,40px);line-height:1.1;letter-spacing:-.02em;margin:0 0 12px;text-wrap:balance}
+p{margin:0;color:var(--mut);line-height:1.55;text-wrap:pretty}
+.row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:24px}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 24px;border-radius:999px;font-size:15px;text-decoration:none;border:1px solid var(--fg);color:var(--fg);transition:background .2s,color .2s}
+.btn.pri{background:var(--fg);color:var(--bg)}
+.btn:hover{background:var(--fg);color:var(--bg)}.btn.pri:hover{opacity:.85}
+.btn:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+footer{padding-block:20px max(20px,env(safe-area-inset-bottom,0px));max-width:1280px;width:100%;margin:0 auto;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+noscript pre{font:10px/1 ui-monospace,Menlo,monospace;margin:0}
+</style>
+</head>
+<body>
+<header><a class="logo" href="./" aria-label="Nøva home">Nøva</a><span class="mono">Error 404</span></header>
+<main>
+<pre id="art" role="img" aria-label="The number 404 drawn in ASCII characters"></pre>
+<noscript><pre>
+ _  _    ___  _  _
+| || |  / _ \| || |
+| || |_| | | | || |_
+|__   _| | | |__   _|
+   | | | |_| |  | |
+   |_|  \___/   |_|
+</pre></noscript>
+<div class="copy">
+<h1>This page drifted off.</h1>
+<p>The link may be broken, or the page may have moved. Head back to the studio and we’ll get you where you were going.</p>
+<div class="row"><a class="btn pri" href="./">Back home</a><a class="btn" href="./#contact">Start a project</a></div>
+</div>
+</main>
+<footer><span class="mono">© 2026 Nøva</span><span class="mono">One studio. Every step from brief to launch.</span></footer>
+<script>
+(function(){
+  var pre=document.getElementById('art'),reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var RAMP=' .·:-=+*#%@',mouse={x:-9,y:-9,on:false},cols,rows,mask,cell=10,raf=0,vis=true;
+  var off=document.createElement('canvas'),octx=off.getContext('2d');
+  function build(){
+    var w=Math.min(window.innerWidth-40,1100);
+    cell=w<520?Math.floor(w/36):w<900?8:10;pre.style.fontSize=cell+'px';
+    cols=Math.max(40,Math.floor(w/(cell*.6)));rows=Math.round(cols*(w<520?.5:.3));
+    off.width=cols;off.height=rows;octx.clearRect(0,0,cols,rows);octx.fillStyle='#000';octx.textAlign='center';octx.textBaseline='middle';
+    var fs=rows*1.18;octx.font='900 '+fs+'px "Arial Black",Impact,Arial,sans-serif';
+    while(octx.measureText('404').width>cols*.94&&fs>6){fs-=1;octx.font='900 '+fs+'px "Arial Black",Impact,Arial,sans-serif'}
+    octx.fillText('404',cols/2,rows/2+rows*.04);
+    var d=octx.getImageData(0,0,cols,rows).data;mask=new Float32Array(cols*rows);
+    for(var i=0;i<mask.length;i++)mask[i]=d[i*4+3]/255;
+  }
+  function h(x,y){var s=Math.sin(x*127.1+y*311.7)*43758.5453;return s-Math.floor(s)}
+  function n(x,y){var xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi;xf=xf*xf*(3-2*xf);yf=yf*yf*(3-2*yf);
+    return h(xi,yi)*(1-xf)*(1-yf)+h(xi+1,yi)*xf*(1-yf)+h(xi,yi+1)*(1-xf)*yf+h(xi+1,yi+1)*xf*yf}
+  function frame(t){
+    raf=0;var out='',k=t*.00035;
+    for(var y=0;y<rows;y++){
+      for(var x=0;x<cols;x++){
+        var m=mask[y*cols+x],v;
+        var f=n(x*.09+k*3,y*.16-k*2)*.6+n(x*.2-k*4,y*.3+k)*.4;
+        if(m>.5){v=.62+f*.38}else{v=Math.max(0,(f-.72)*1.0)}
+        if(mouse.on){var dx=(x-mouse.x)*.55,dy=(y-mouse.y),r=Math.sqrt(dx*dx+dy*dy);v+=Math.max(0,1-r/9)*.9}
+        v=Math.max(0,Math.min(.999,v));
+        out+=RAMP.charAt((v*RAMP.length)|0);
+      }
+      out+='\n';
+    }
+    pre.textContent=out;
+    if(!reduce&&vis)raf=requestAnimationFrame(frame);
+  }
+  function start(){if(!raf)raf=requestAnimationFrame(frame)}
+  build();frame(0);
+  if(!reduce){
+    start();
+    pre.addEventListener('pointermove',function(e){var r=pre.getBoundingClientRect();mouse.x=(e.clientX-r.left)/r.width*cols;mouse.y=(e.clientY-r.top)/r.height*rows;mouse.on=true});
+    pre.addEventListener('pointerleave',function(){mouse.on=false});
+    document.addEventListener('visibilitychange',function(){vis=!document.hidden;if(vis)start()});
+  }
+  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){build();frame(performance.now())},120)});
+})();
+</script>
+</body>
+</html>
