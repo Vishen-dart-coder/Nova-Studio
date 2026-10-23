@@ -1,3 +1,8 @@
+/* Contact config: fill these in to switch the enquiry features on. Empty = hidden.
+   whatsapp: digits only with country code, e.g. '447700900123'
+   formAction: a form-service endpoint (e.g. https://formspree.io/f/xxxx) that accepts JSON POSTs */
+var NOVA_CONTACT = { whatsapp: '', formAction: '' };
+
 (function () {
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -403,5 +408,30 @@ document.body.appendChild(s)}catch(e){}})();
     var el=document.querySelector(id);if(!el)return;
     e.preventDefault();lenis.scrollTo(el,{offset:0,duration:1.2});
     try{history.pushState(null,'',id)}catch(_){}
+  });
+})();
+
+
+/* enquiry form + WhatsApp */
+(function () {
+  var C = window.NOVA_CONTACT || NOVA_CONTACT, box = document.getElementById('enquiry'); if (!box) return;
+  var wa = box.querySelector('.enq-wa'), form = box.querySelector('.enq-form'), st = box.querySelector('.enq-status');
+  var num = (C.whatsapp || '').replace(/\D/g, '');
+  if (num) { wa.href = 'https://wa.me/' + num + '?text=' + encodeURIComponent('Hi N\u00f8va, I\u2019d like to enquire about a project.'); wa.hidden = false; }
+  if (/^https:\/\//.test(C.formAction || '')) form.hidden = false;
+  box.hidden = wa.hidden && form.hidden; if (box.hidden) return;
+  if (num) Array.prototype.slice.call(document.querySelectorAll('dialog.appointment-dialog-module__PXLRja__dialog .mt-6.grid')).forEach(function (g) {
+    var l = wa.cloneNode(true); l.removeAttribute('hidden'); l.className = 'enq-wa'; g.appendChild(l);
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (form._gotcha && form._gotcha.value) return;
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    var btn = form.querySelector('.enq-send'); btn.disabled = true; st.textContent = 'Sending\u2026';
+    var d = {}; new FormData(form).forEach(function (v, k) { d[k] = v; });
+    fetch(C.formAction, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(d) })
+      .then(function (r) { if (!r.ok) throw 0; form.reset(); st.textContent = 'Thank you. We will reply within two working days.'; })
+      .catch(function () { st.textContent = 'Something went wrong. Please email us instead.'; })
+      .then(function () { btn.disabled = false; });
   });
 })();
