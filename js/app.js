@@ -435,3 +435,15 @@ document.body.appendChild(s)}catch(e){}})();
       .then(function () { btn.disabled = false; });
   });
 })();
+
+
+/* terms of service + refund policy dialog */
+(function () {
+  var d = document.getElementById('terms-dialog'); if (!d) return;
+  var root = document.documentElement;
+  function open(t) { if (d.open) return; d._t = t; d.showModal(); root.style.overflow = 'hidden'; var b = d.querySelector('.pp-body'); if (b) b.scrollTop = 0; }
+  d.addEventListener('close', function () { root.style.overflow = ''; if (d._t && d._t.focus) d._t.focus(); });
+  d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
+  d.querySelector('.pp-close').addEventListener('click', function () { d.close(); });
+  Array.prototype.slice.call(document.querySelectorAll('[data-open-terms]')).forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
+})();
