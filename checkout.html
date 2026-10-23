@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Checkout | Nøva</title>
+<meta content="noindex,nofollow" name="robots"/>
+<meta content="Secure your project slot with Nøva." name="description"/>
+<meta content="#fafaf8" media="(prefers-color-scheme: light)" name="theme-color"/><meta content="#0f0f0f" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<link as="font" crossorigin="" href="fonts/geist.woff2" rel="preload" type="font/woff2"/>
+<link href="css/3ckmnj9830jt3.css" rel="stylesheet"/><link href="css/2xv86bgcfq2_5.css" rel="stylesheet"/><link href="css/extra.css" rel="stylesheet"/><link href="css/checkout.css" rel="stylesheet"/>
+<link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<script>(function(){try{var m=localStorage.getItem("nova-mode");if(m!=="dark"&&m!=="light"){m=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-mode",m)}catch(e){document.documentElement.setAttribute("data-mode","light")}})()</script>
+</head>
+<body class="co">
+<header class="co-head"><a aria-label="Nøva home" href="./"><img alt="Nøva" class="nova-logo" height="22" src="assets/logo-black.png" width="73"/></a><a class="co-back" href="./">← Back to site</a></header>
+<main class="co-main" id="main">
+
+<section aria-labelledby="co-h1" class="co-step" id="step-details">
+<p class="co-eyebrow">Checkout</p>
+<h1 id="co-h1">Let’s get you started.</h1>
+<p class="co-lead">Tell us who you are and which website this is for.</p>
+<form class="co-form" id="details-form" novalidate>
+<label>Your name<input autocomplete="name" id="f-name" maxlength="120" name="name" required type="text"/><span class="co-err" id="e-name"></span></label>
+<label>Website URL<input autocomplete="url" id="f-url" inputmode="url" maxlength="300" name="url" placeholder="https://yourbrand.com" required type="text"/><span class="co-err" id="e-url"></span></label>
+<button class="co-btn" type="submit">Continue</button>
+</form>
+</section>
+
+<section aria-labelledby="co-h2" class="co-step" hidden id="step-pay">
+<p class="co-eyebrow">Your order</p>
+<h1 id="co-h2">Hi <span id="o-name"></span>.</h1>
+<p class="co-lead">Here is what you are paying for.</p>
+<dl class="co-sum">
+<div><dt>Website</dt><dd id="o-url"></dd></div>
+<div><dt>For</dt><dd id="o-for"></dd></div>
+<div class="co-total"><dt>Amount due</dt><dd id="o-amt"></dd></div>
+</dl>
+
+<div id="pay-block">
+<h2>1. Pay by UPI</h2>
+<p class="co-hint">Use Google Pay, PhonePe, Paytm or any UPI app.</p>
+<a class="co-btn" hidden id="upi-link">Open UPI app to pay</a>
+<div class="co-upi" hidden id="upi-box"><span>UPI ID</span><code id="upi-id"></code><button class="co-copy" id="upi-copy" type="button">Copy</button></div>
+<p class="co-hint" id="upi-missing" hidden>UPI details are not set up yet. Message us on WhatsApp and we will send them.</p>
+
+<h2>2. Confirm your payment</h2>
+<form class="co-form" id="pay-form" novalidate>
+<label>UPI transaction reference (UTR)<input autocomplete="off" id="f-utr" inputmode="text" maxlength="30" name="utr" placeholder="e.g. 412345678901" required type="text"/><span class="co-err" id="e-utr"></span></label>
+<label><span>Notes for us <span class="co-opt">(optional)</span></span><textarea id="f-notes" maxlength="1000" name="notes" rows="3"></textarea></label>
+<button class="co-btn" type="submit">I’ve paid, send confirmation</button>
+</form>
+<p class="co-hint">This opens WhatsApp with your details filled in. We check the payment and reply within two working days. See our <a href="./#terms">terms and refund policy</a>.</p>
+</div>
+
+<p class="co-bad" hidden id="no-amount">This payment link is missing an amount. Please use the link we sent you, or <a id="bad-wa" rel="noopener noreferrer" target="_blank">message us on WhatsApp</a>.</p>
+<button class="co-link" id="edit-details" type="button">← Edit my details</button>
+</section>
+
+</main>
+<script src="js/checkout.js"></script>
+</body></html>

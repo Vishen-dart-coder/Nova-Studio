@@ -445,5 +445,6 @@ document.body.appendChild(s)}catch(e){}})();
   d.addEventListener('close', function () { root.style.overflow = ''; if (d._t && d._t.focus) d._t.focus(); });
   d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
   d.querySelector('.pp-close').addEventListener('click', function () { d.close(); });
+  if (location.hash === '#terms') setTimeout(function () { open(null); }, 2300);
   Array.prototype.slice.call(document.querySelectorAll('[data-open-terms]')).forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
 })();
