@@ -1,7 +1,7 @@
 /* Contact config: fill these in to switch the enquiry features on. Empty = hidden.
    whatsapp: digits only with country code, e.g. '447700900123'
    formAction: a form-service endpoint (e.g. https://formspree.io/f/xxxx) that accepts JSON POSTs */
-var NOVA_CONTACT = { whatsapp: '', formAction: '' };
+var NOVA_CONTACT = { whatsapp: '917021242931', formAction: '' };
 
 (function () {
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
