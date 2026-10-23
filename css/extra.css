@@ -400,3 +400,11 @@ main > section[id]:not(#site-footer):not(#contact){min-height:0!important;height
 
 /* Lenis */
 html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}
+
+/* outcomes section */
+.out-grid{display:grid;grid-template-columns:1fr;gap:0 24px}
+.out-grid article{border-top:1px solid rgba(17,17,17,.18);padding:22px 0}
+.out-grid h3{margin:0 0 8px}
+.out-grid p{margin:0;max-width:40ch;color:var(--muted,#555);line-height:1.5}
+@media(min-width:768px){.out-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+:root[data-mode=dark] .out-grid article{border-color:rgba(255,255,255,.16)}
